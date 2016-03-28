@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сортировщик карточек путешественника</title>
+</head>
+<body>
+
+<div id="info">
+    <h2>Перемешанные карточки</h2>
+</div>
+
+<h3>Инструкция:</h3>
+
+<script src="api/main.js"></script>
+<script>
+    //Example
+    // Создаем карточки
+    var a = {
+                from: 'Madrid',
+                to: 'Barcelona',
+                transport: {
+                    type: 'train',
+                    name: '78A',
+                    seat: 'Seat 45B'
+                }
+            },
+        b = {
+            from: 'Barcelona',
+            to: 'Gerona Airport',
+            transport: {
+                type: 'bus',
+                name: 'the airport bus',
+                seat: 'No seat assignment'
+            }
+        },
+        c = {
+            from: 'Gerona Airport',
+            to: 'Stockholm',
+            transport: {
+                type: 'flight',
+                name: 'SK455',
+                seat: 'Seat 3A',
+                gate: '45B',
+                baggage: 'drop at ticket counter 344'
+            }
+        },
+        d = {
+            from: 'Stockholm',
+            to: 'New York JFK',
+            transport: {
+                type: 'flight',
+                name: 'SK22',
+                seat: 'Seat 7B',
+                gate: '22',
+                baggage: 'will be automatically transferred from your last leg'
+            }
+        },
+        e = {
+            from: 'New York JFK',
+            to: 'Washington',
+            transport: {
+                type: 'bus',
+                name: 'the bus 46',
+                seat: 'Seat 34'
+            }
+        },
+        f = {
+            from: 'Washington',
+            to: 'las Vegas',
+            transport: {
+                type: 'train',
+                name: '186TR',
+                seat: 'Seat 65'
+            }
+        },
+        g = {
+            from: 'las Vegas',
+            to: 'North Las Vegas',
+            transport: {
+                type: 'bus',
+                name: 'the airport bus',
+                seat: 'No seat assignment'
+            }
+        },
+        h = {
+            from: 'North Las Vegas',
+            to: 'Tokyo',
+            transport: {
+                type: 'flight',
+                name: 'VS125',
+                seat: 'Seat 12C',
+                gate: '14',
+                baggage: 'drop at ticket counter 134'
+            }
+        };
+
+    // Делаем из них массив
+    var cards = [a, b, c, d, e, f, g, h];
+
+    //Перемешиваем массив и выводим на экран список карточек
+    var shuffle = API.shuffle(cards);
+    API.showAllCards('info', shuffle);
+
+    // Сортируем массив
+    var sorted = API.sort(shuffle);
+
+    // Создаем новую карточку и добавляем в уже имеющийся массив
+    var newcard = API.addCard('Shanghai', { type: 'train', name: 'S5', seat: 'Seat 43D'});
+    sorted.push(newcard);
+
+    // Выводим на экран список инструкцию
+    API.showWay('info2', sorted);
+</script>
+</body>
+</html>
